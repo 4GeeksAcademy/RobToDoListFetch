@@ -1,9 +1,0 @@
-
-.deleteTask {
-  visibility: hidden;
-}
-
-
-.list-group-item:hover .deleteTask {
-  visibility: visible;
-}
