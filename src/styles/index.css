@@ -6,8 +6,8 @@
 }
 
 .inputWidth {
-    width: 80%;
-    
+    width: 60%;
+    /* border: none; */
 
 }
 
@@ -17,9 +17,8 @@
    
 }
 
-#inputLi{
-    border: none;
-}
+
+
 /* body{
     background-color: rgb(255, 212, 240);
 } */
