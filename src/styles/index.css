@@ -6,17 +6,33 @@
 }
 
 .inputWidth {
-    width: 300px;
-    max-width: 300px;
+    width: 80%;
+    
 
 }
 
 #listTodo {
-    max-width: 450px;
-    width: 450px;
+    
+    width: 80%;
    
 }
 
 #inputLi{
     border: none;
 }
+/* body{
+    background-color: rgb(255, 212, 240);
+} */
+body{
+    background-image: url(https://img.freepik.com/vector-premium/lindo-conjunto-animales-dibujos-animales-patron-frases-boceto-dibujado-mano_68292-1567.jpg?w=1480);
+    background-repeat: repeat;
+    background-size: 60%;
+    
+}
+.position-relative{
+    box-shadow: -12px 10px 80px rgb(137, 24, 24);
+}
+.list-group-flush{
+    height: 80%;
+}
+
