@@ -1,0 +1,17 @@
+.hidden-icon > span {
+    visibility: hidden;
+}
+.hidden-icon:hover > span {
+    visibility: visible;
+}
+
+.inputWidth {
+    width: 200px;
+    max-width: 200px;
+
+}
+
+#listTodo {
+    max-width: 450px;
+    width: 450px;
+}
