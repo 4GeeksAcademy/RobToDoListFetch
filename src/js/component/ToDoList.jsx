@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/index.css";
 
 
@@ -6,6 +6,38 @@ import "../../styles/index.css";
 export const ToDoList = () => {
   const [task, setTask] = useState("");
   const [toDoTask, setToDoTask] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState('');
+
+
+  const host = 'https://playground.4geeks.com/todo/'
+
+  const getToDos = async() =>{
+    const uri = host + '/todos/';
+    const options = {
+      method: 'GET'
+    };
+
+    const response = await fetch(uri, options)
+    if (!response.ok) {
+      if (response.status == '404') {
+        console.log('bad request 404')
+      }
+      console.log('Error: ', response.status, response.statusText)
+      return
+    }
+    const data = await response.json 
+    setTask.data;
+    setUsers.data;
+  };
+
+  const handleSelectUser = (event) => {
+    setSelectedUser(event.target.value);
+  };
+
+  useEffect(() => {
+    getToDos()
+  }, [])
 
   const handleTask = (event) => {
     event.preventDefault();
@@ -40,7 +72,7 @@ export const ToDoList = () => {
     <ul className="list-group list-group-flush bg-light">
       {toDoTask.map((item, index) => (
   <li key={index} className="list-group-item my-2 shadow-sm g-3 rounded-4 
-  d-flex text-start bg-light align-items-center ">
+  d-flex text-start bg-light align-items-center ">{item.todos}
     <div className="d-flex justify-content-between w-100 hidden-icon">
       <label className="text-start">{item}{item.length > 70 ? <br /> : ""}</label>
       <span onClick={() => deleteTask(item)}>
@@ -57,6 +89,12 @@ export const ToDoList = () => {
       </h5>
     </div>
 </div>
+<select className="form-select" aria-label="Selecciona un usuario" value={selectedUser} onChange={handleSelectUser}>
+        <option value="">Selecciona un usuario</option>
+        {users.map((user) => (
+          <option key={user.id} value={user.id}>{user.name}</option>
+        ))}
+      </select>
 </div>
 
   );
