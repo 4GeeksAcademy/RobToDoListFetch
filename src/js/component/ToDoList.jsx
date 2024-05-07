@@ -32,7 +32,7 @@ useEffect(() =>{
 
 return (
   <div>
-    <ul>
+    <ul className="bg-light">
       {task.map((item) => 
 
       <li key={item.id} ><h1>{item.label}</h1></li>
