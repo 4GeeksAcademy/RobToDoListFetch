@@ -32,12 +32,19 @@ useEffect(() =>{
 
 return (
   <div>
-    <ul className="bg-light">
+    <div className=" my-3 container-fluid m-auto d-flex flex-column text-center bg-light rounded-4 position-relative" 
+    style={{ maxWidth: "600px", width: "50%", height: "93vh", minWidth: "300px", minHeight: "550px"}}>
+    <div><h1 className="my-3"> To-do's</h1></div>
+    <div className=" my-3 container-fluid m-auto d-flex flex-column text-center bg-light rounded-4 position-relative" 
+    style={{ maxWidth: "600px", width: "50%", height: "93vh", minWidth: "300px", minHeight: "550px"}}>
+    <div><h1 className="my-3"> To-do's</h1></div>
       {task.map((item) => 
 
       <li key={item.id} ><h1>{item.label}</h1></li>
       )}
-    </ul>
+    </ul
+    </div>
+    </div>
   </div>
 )
 
