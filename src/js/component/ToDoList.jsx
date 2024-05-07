@@ -35,14 +35,16 @@ return (
     <div className=" my-3 container-fluid m-auto d-flex flex-column text-center bg-light rounded-4 position-relative" 
     style={{ maxWidth: "600px", width: "50%", height: "93vh", minWidth: "300px", minHeight: "550px"}}>
     <div><h1 className="my-3"> To-do's</h1></div>
-    <div className=" my-3 container-fluid m-auto d-flex flex-column text-center bg-light rounded-4 position-relative" 
-    style={{ maxWidth: "600px", width: "50%", height: "93vh", minWidth: "300px", minHeight: "550px"}}>
+   <div id="listTodo" className=" bg-light mx-auto py-1" 
+  style={{ overflowY: "auto", maxHeight: "75%" }}>
+    <ul className="list-group list-group-flush bg-light">
     <div><h1 className="my-3"> To-do's</h1></div>
       {task.map((item) => 
 
-      <li key={item.id} ><h1>{item.label}</h1></li>
+      <li key={item.id} className="list-group-item my-2 shadow-sm g-3 rounded-4 
+  d-flex text-start bg-light align-items-center "><h1>{item.label}</h1></li>
       )}
-    </ul
+    </ul>
     </div>
     </div>
   </div>
