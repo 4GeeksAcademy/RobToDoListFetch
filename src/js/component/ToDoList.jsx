@@ -38,7 +38,7 @@ return (
    <div id="listTodo" className=" bg-light mx-auto py-1" 
   style={{ overflowY: "auto", maxHeight: "75%" }}>
     <ul className="list-group list-group-flush bg-light">
-    <div><h1 className="my-3"> To-do's</h1></div>
+  
       {task.map((item) => 
 
       <li key={item.id} className="list-group-item my-2 shadow-sm g-3 rounded-4 
