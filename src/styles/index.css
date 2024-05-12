@@ -28,15 +28,11 @@ body{
     background-size: 60%;
     
 }
-.position-relative{
+.position-relative, button{
     box-shadow: -12px 10px 80px rgb(137, 24, 24);
 
 } 
 .list-group-flush{
     height: 80%;
-}
-.listBorder{
-    border: 1px;
-    border-color: black;
 }
 

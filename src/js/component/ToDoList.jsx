@@ -8,6 +8,7 @@ export const ToDoList = () => {
   const [toDoTask, setToDoTask] = useState();
   const [edit, setEdit] = useState(false);
   const [currentToDo, setCurrentToDo] = useState([])
+  const [selectUser, setSelectUser] = useState([])
 
   const user = 'Robert'
   const host = 'https://playground.4geeks.com/todo/'
@@ -25,6 +26,20 @@ export const ToDoList = () => {
     const data = await response.json();
     setTask(data.todos)
 
+  };
+
+  const getUsers = async () => {
+    const uri = host + 'users';
+    const options = { method: 'GET' };
+  
+    const response = await fetch(uri, options);
+    if (!response.ok) {
+      console.log("Error:", response.status, response.statusText);
+      return;
+    }
+  
+    const data = await response.json();
+    setSelectUser(data.users);
   };
 
   const createToDo = async () => {
@@ -49,7 +64,30 @@ export const ToDoList = () => {
 
   };
 
+  const createUser = async () => {
+    const uri = host + 'users/';
+    const newUser = { label: selectUser }; 
+    
+    const options = {
+      method: 'POST',
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(newUser)
+    };
+  
+    const response = await fetch(uri, options);
+  
+    if (!response.ok) {
+      console.log("Ha habido un error", response.status, response.statusText);
+      return;
+    }
+  
+    setSelectUser(""); 
+    getUsers();
+  };
+
   const enterKey = (event) => { event.key === "Enter" ? createToDo() : null };
+
+  const enterUser = (event) => { event.key === "Enter" ? createUser() : null };
 
   const enterEdit = (event) => { event.key === "Enter" ? handleEditToDo() : null };
 
@@ -107,12 +145,45 @@ console.log(uri);
 
   useEffect(() => {
     getTodos();
+    getUsers();
   }, [])
 
   return (
-    <div>
+    <div className="d-flex">
+
+
+      <div>
+      <button className="btn btn-light m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">User</button>
+      </div>
+
+<div className="offcanvas offcanvas-top" tabIndex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+  <div className="offcanvas-header">
+    <h5 className="offcanvas-title" id="offcanvasTopLabel">New user</h5>
+    <input
+  type="text"
+  placeholder="User"
+  value={selectUser}
+  className="form-control m-auto inputWidth rounded-4 float-start"
+  onChange={(event) => setSelectUser(event.target.value)}
+  onKeyPress={enterUser}
+/>
+    <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    
+  </div>
+  <div className="offcanvas-body">
+  <h5>Select User</h5>
+  <select className="form-select" aria-label="Default select example">
+  <option defaultValue={null}>User</option>
+  {selectUser.map((item) => 
+    <option key={item.id} value={item.id}>{item.name}</option>
+  )}
+</select>
+  </div>
+</div>
+
+
       <div className=" my-3 container-fluid m-auto d-flex flex-column text-center bg-light rounded-4 position-relative"
-        style={{ maxWidth: "600px", width: "50%", height: "93vh", minWidth: "300px", minHeight: "550px" }}>
+        style={{ maxWidth: "600px", width: "50%", height: "93vh", minWidth: "300px", minHeight: "550px" }}>    
         <div><h1 className="my-3"> To-do's</h1></div>
         <li className="list-group-item  d-flex align-items-center bg-light text-center">
           {edit ? <input
